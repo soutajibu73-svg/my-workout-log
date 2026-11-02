@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>体重管理 | MY WORKOUT LOG</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="weight-page">
+
+<!-- ホーム画面と共通のヘッダー -->
+<header class="home-header">
+
+    <a class="home-brand" href="index.html" aria-label="My Workout Log ホーム">
+        <span class="brand-mark" aria-hidden="true">MW</span>
+        <span class="brand-name">
+            MY WORKOUT <b>LOG</b>
+        </span>
+    </a>
+
+    <nav class="home-desktop-nav" aria-label="メインメニュー">
+        <a href="index.html">ホーム</a>
+        <a href="record.html">記録する</a>
+        <a href="history.html">履歴</a>
+        <a href="progress.html">成長</a>
+        <a href="weight.html" aria-current="page">体重管理</a>
+        <a href="beginner.html">初心者メニュー</a>
+    </nav>
+
+    <a class="home-header-cta" href="record.html">
+        ＋ 記録する
+    </a>
+
+</header>
+
+    <main class="weight-main">
+
+
+        <!-- メインビジュアル -->
+<section class="weight-hero">
+
+    <div class="weight-hero-content">
+
+        <p class="weight-eyebrow">
+            BODY WEIGHT TRACKER
+        </p>
+
+        <h1>
+            身体の変化を、<br>
+            <span class="weight-title-accent">管理する。</span>
+        </h1>
+
+        <p class="weight-hero-description">
+            日々の小さな変化が、大きな成長につながる。
+        </p>
+
+    </div>
+
+    <!-- 体重管理のメイン写真 -->
+    <div class="weight-hero-image">
+        <img
+            src="./img/weight-hero.jpg"
+            alt="ジムで体重計に乗り、身体の変化を確認する男性"
+        >
+    </div>
+
+</section>
+
+        <!-- 現在の体重 -->
+        <section class="weight-section">
+
+            <div class="weight-section-heading">
+                <p class="weight-section-label">YOUR BODY DATA</p>
+                <h2>現在の身体データ</h2>
+            </div>
+
+            <div class="weight-summary-grid">
+
+                <article class="weight-summary-card weight-summary-primary">
+                    <p>現在の体重</p>
+                    <h3 id="latestWeight">-- kg</h3>
+                    <span>最新の記録</span>
+                </article>
+
+                <article class="weight-summary-card">
+                    <p>開始時からの変化</p>
+                    <h3 id="weightStartDifference">-- kg</h3>
+                    <span>最初の記録との比較</span>
+                </article>
+
+                <article class="weight-summary-card">
+                    <p>目標体重</p>
+                    <h3 id="targetWeightDisplay">未設定</h3>
+                    <span>設定した目標</span>
+                </article>
+
+                <article class="weight-summary-card">
+                    <p>目標まで</p>
+                    <h3 id="weightToGoal">-- kg</h3>
+                    <span>現在の体重との差</span>
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- 体重推移グラフ -->
+        <section class="weight-section">
+
+            <div class="weight-section-heading">
+                <p class="weight-section-label">WEIGHT PROGRESS</p>
+                <h2>体重の推移</h2>
+            </div>
+
+            <div class="weight-panel">
+
+                <div class="weight-chart-header">
+                    <h3>体重推移グラフ</h3>
+
+                    <div class="weight-period-buttons" aria-label="グラフ表示期間">
+                        <button type="button" class="weight-period-btn" data-period="week">1週間</button>
+                        <button type="button" class="weight-period-btn is-active" data-period="month">1か月</button>
+                        <button type="button" class="weight-period-btn" data-period="threeMonths">3か月</button>
+                        <button type="button" class="weight-period-btn" data-period="all">全期間</button>
+                    </div>
+                </div>
+
+                <div class="weight-chart-container">
+                    <canvas id="weightChart"></canvas>
+                </div>
+
+                <p id="chartMessage" role="status">
+                    体重を記録するとグラフが表示されます。
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- 体重記録・目標設定 -->
+        <section class="weight-section">
+
+            <div class="weight-section-heading">
+                <p class="weight-section-label">TRACK YOUR WEIGHT</p>
+                <h2>体重を記録する</h2>
+            </div>
+
+            <div class="weight-form-grid">
+
+                <div class="weight-panel">
+
+                    <h3>今日の体重を記録</h3>
+
+                    <form id="weightForm">
+
+                        <label for="weightValue">体重（kg）</label>
+
+                        <input
+                            type="number"
+                            id="weightValue"
+                            min="1"
+                            max="500"
+                            step="0.1"
+                            placeholder="例：67.5"
+                            required
+                        >
+
+                        <label for="weightDate">日付</label>
+
+                        <input
+                            type="date"
+                            id="weightDate"
+                            required
+                        >
+
+                        <button type="submit" class="weight-primary-btn">
+                            体重を保存する
+                        </button>
+
+                    </form>
+
+                    <p id="weightMessage" role="status" aria-live="polite"></p>
+
+                </div>
+
+                <div class="weight-panel">
+
+                    <h3>目標体重を設定</h3>
+
+                    <p class="weight-form-description">
+                        目標を設定して、身体の変化を確認しよう。
+                    </p>
+
+                    <form id="targetWeightForm">
+
+                        <label for="targetWeightInput">目標体重（kg）</label>
+
+                        <input
+                            type="number"
+                            id="targetWeightInput"
+                            min="1"
+                            max="500"
+                            step="0.1"
+                            placeholder="例：70.0"
+                            required
+                        >
+
+                        <button type="submit" class="weight-primary-btn">
+                            目標を設定する
+                        </button>
+
+                    </form>
+
+                    <p id="targetWeightMessage" role="status" aria-live="polite"></p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- 体重履歴 -->
+        <section class="weight-section">
+
+            <div class="weight-section-heading">
+                <p class="weight-section-label">WEIGHT HISTORY</p>
+                <h2>体重の記録履歴</h2>
+            </div>
+
+            <div class="weight-panel">
+
+                <div id="weightHistory">
+                    <p>まだ記録がありません。</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <nav class="bottom-nav" aria-label="モバイルメニュー">
+        <a href="index.html">🏠 ホーム</a>
+        <a href="record.html">➕ 記録</a>
+        <a href="history.html">📋 履歴</a>
+        <a href="progress.html">📈 成長</a>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./weight.js"></script>
+
+</body>
+</html>

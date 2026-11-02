@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WORKOUT PLANNER | MY WORKOUT LOG</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="./beginner.js" defer></script>
+</head>
+
+<body class="beginner-page">
+
+    <!-- =====================================
+         全ページ共通ヘッダー
+    ===================================== -->
+
+
+    <header class="history-header">
+        <a href="index.html" class="history-brand">
+            <span class="history-brand-icon">MW</span>
+            <span class="history-brand-text">MY WORKOUT LOG</span>
+        </a>
+        <nav class="history-desktop-nav" aria-label="メインメニュー">
+            <a href="index.html">ホーム</a>
+            <a href="record.html">記録する</a>
+            <a href="history.html">履歴</a>
+            <a href="progress.html">成長</a>
+            <a href="weight.html">体重管理</a>
+            <a href="beginner.html" aria-current="page">初心者メニュー</a>
+        </nav>
+        <a href="record.html" class="history-header-button">＋ 記録する</a>
+    </header>
+
+    <!-- =====================================
+         メインコンテンツ
+    ===================================== -->
+
+    <main class="beginner-main">
+
+        <!-- =====================================
+             メインビジュアル
+        ===================================== -->
+
+        <section class="planner-hero">
+
+            <div class="planner-hero-content">
+
+                <p class="planner-label">
+                    WORKOUT PLANNER
+                </p>
+
+                <h1>
+                    今日の筋トレ、<br>
+                    <span>もう迷わない。</span>
+                </h1>
+
+                <p class="planner-hero-description">
+                    あなたの目的やトレーニング履歴に合わせて、<br>
+                    今日のおすすめメニューを提案します。
+                </p>
+
+                <a
+                    href="#planner-modes"
+                    class="planner-primary-button"
+                >
+                    メニューを考える →
+                </a>
+
+            </div>
+
+            <!-- ヒーロー画像 -->
+            <div class="planner-hero-image">
+
+                <img
+                    src="./img/workout-hero.png"
+                    alt="ジムでトレーニングする様子"
+                    onerror="this.style.display='none'"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             モード選択
+        ===================================== -->
+
+        <section
+            id="planner-modes"
+            class="planner-section"
+        >
+
+            <div class="planner-section-heading">
+
+                <p class="planner-label">
+                    CHOOSE YOUR STYLE
+                </p>
+
+                <h2>
+                    メニューの決め方を選ぼう
+                </h2>
+
+                <p>
+                    あなたに合った方法で今日のトレーニングを決めましょう。
+                </p>
+
+            </div>
+
+
+            <div class="planner-mode-grid">
+
+                <!-- 自分で作る -->
+                <button
+                    type="button"
+                    class="planner-mode-card"
+                    id="manualMode"
+                >
+
+                    <span class="planner-mode-number">
+                        01 / CUSTOM PLAN
+                    </span>
+
+                    <div class="planner-mode-icon">
+                        🏋️
+                    </div>
+
+                    <h3>
+                        自分でメニューを作る
+                    </h3>
+
+                    <p>
+                        目的・場所・時間・部位を選んで、
+                        あなたに合ったメニューを作成します。
+                    </p>
+
+                    <span class="planner-mode-link">
+                        メニューを作成 →
+                    </span>
+
+                </button>
+
+
+                <!-- 履歴から提案 -->
+                <button
+                    type="button"
+                    class="planner-mode-card"
+                    id="historyMode"
+                >
+
+                    <span class="planner-mode-number">
+                        02 / SMART PLAN
+                    </span>
+
+                    <div class="planner-mode-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        履歴から自動で提案
+                    </h3>
+
+                    <p>
+                        過去のトレーニング記録を参考に、
+                        今日のおすすめ部位を提案します。
+                    </p>
+
+                    <span class="planner-mode-link">
+                        おすすめを見る →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             自分でメニューを作成
+        ===================================== -->
+
+        <section
+            id="manualPlanner"
+            class="planner-section planner-form-section"
+            hidden
+        >
+
+            <div class="planner-section-heading">
+
+                <p class="planner-label">
+                    CREATE YOUR PLAN
+                </p>
+
+                <h2>
+                    あなたに合ったメニューを作成
+                </h2>
+
+                <p>
+                    4つの項目を選択してください。
+                </p>
+
+            </div>
+
+
+            <form id="plannerForm">
+
+                <!-- 目的 -->
+                <div class="planner-field">
+
+                    <label for="plannerGoal">
+                        01. トレーニングの目的
+                    </label>
+
+                    <select id="plannerGoal" required>
+
+                        <option value="">
+                            目的を選択してください
+                        </option>
+
+                        <option value="muscle">
+                            筋肉を大きくしたい
+                        </option>
+
+                        <option value="diet">
+                            脂肪を減らしたい
+                        </option>
+
+                        <option value="health">
+                            運動習慣をつけたい
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- 場所 -->
+                <div class="planner-field">
+
+                    <label for="plannerPlace">
+                        02. トレーニングする場所
+                    </label>
+
+                    <select id="plannerPlace" required>
+
+                        <option value="">
+                            場所を選択してください
+                        </option>
+
+                        <option value="gym">
+                            ジム
+                        </option>
+
+                        <option value="home">
+                            自宅
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- 時間 -->
+                <div class="planner-field">
+
+                    <label for="plannerTime">
+                        03. 今日使える時間
+                    </label>
+
+                    <select id="plannerTime" required>
+
+                        <option value="">
+                            時間を選択してください
+                        </option>
+
+                        <option value="20">
+                            15〜20分
+                        </option>
+
+                        <option value="45">
+                            30〜45分
+                        </option>
+
+                        <option value="60">
+                            60分程度
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- 部位 -->
+                <div class="planner-field">
+
+                    <label for="plannerBodyPart">
+                        04. 今日鍛えたい部位
+                    </label>
+
+                    <select id="plannerBodyPart" required>
+
+                        <option value="">
+                            部位を選択してください
+                        </option>
+
+                        <option value="胸">胸</option>
+                        <option value="背中">背中</option>
+                        <option value="脚">脚</option>
+                        <option value="肩">肩</option>
+                        <option value="腕">腕</option>
+                        <option value="腹筋">腹筋</option>
+                        <option value="お尻">お尻</option>
+                        <option value="auto">おまかせ</option>
+
+                    </select>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="planner-submit-button"
+                >
+                    今日のメニューを作成する →
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- =====================================
+             履歴から自動提案
+        ===================================== -->
+
+        <section
+            id="historyPlanner"
+            class="planner-section planner-form-section"
+            hidden
+        >
+
+            <div class="planner-section-heading">
+
+                <p class="planner-label">
+                    SMART RECOMMENDATION
+                </p>
+
+                <h2>
+                    過去の記録からおすすめを提案
+                </h2>
+
+                <p>
+                    最近のトレーニング履歴を参考に、
+                    今日のメニューを考えます。
+                </p>
+
+            </div>
+
+
+            <div class="planner-field">
+
+                <label for="historyFatigue">
+                    今日の体調
+                </label>
+
+                <select id="historyFatigue">
+
+                    <option value="good">
+                        元気！しっかり鍛えたい
+                    </option>
+
+                    <option value="normal">
+                        普通
+                    </option>
+
+                    <option value="tired">
+                        疲れている・筋肉痛がある
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="planner-submit-button"
+                id="generateHistoryPlan"
+            >
+                履歴からメニューを提案する →
+            </button>
+
+        </section>
+
+
+        <!-- =====================================
+             メニュー提案結果
+        ===================================== -->
+
+        <section
+            id="plannerResult"
+            class="planner-section planner-result"
+            hidden
+            aria-live="polite"
+        >
+
+            <div class="planner-section-heading">
+
+                <p class="planner-label">
+                    TODAY'S WORKOUT
+                </p>
+
+                <h2 id="plannerResultTitle">
+                    今日のおすすめメニュー
+                </h2>
+
+                <p id="plannerResultDescription"></p>
+
+            </div>
+
+
+            <div
+                id="plannerExerciseList"
+                class="planner-exercise-grid"
+            ></div>
+
+
+            <a
+                href="record.html"
+                class="planner-primary-button"
+            >
+                ＋ トレーニングを記録する
+            </a>
+
+        </section>
+
+
+        <!-- =====================================
+             初心者向けメニュー
+        ===================================== -->
+
+        <section class="planner-section">
+
+            <div class="planner-section-heading">
+
+                <p class="planner-label">
+                    START YOUR FITNESS
+                </p>
+
+                <h2>
+                    初心者におすすめのメニュー
+                </h2>
+
+                <p>
+                    筋トレが初めての人は、ここから始めよう！
+                </p>
+
+            </div>
+
+
+            <div class="planner-beginner-grid">
+
+                <!-- 初めての筋トレ -->
+                <article class="planner-beginner-card">
+
+                    <div class="planner-beginner-image">
+
+                        <img
+                            src="./img/beginner-gym.jpg"
+                            alt="ジムでの筋力トレーニング"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+                    <div class="planner-beginner-content">
+
+                        <span>
+                            BEGINNER / LEVEL 1
+                        </span>
+
+                        <h3>
+                            🌱 初めての筋トレ
+                        </h3>
+
+                        <p>
+                            週2回・約30〜40分
+                        </p>
+
+                        <ul>
+                            <li>レッグプレス：10回 × 2セット</li>
+                            <li>チェストプレス：10回 × 2セット</li>
+                            <li>ラットプルダウン：10回 × 2セット</li>
+                        </ul>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 全身筋力アップ -->
+                <article class="planner-beginner-card">
+
+                    <div class="planner-beginner-image">
+
+                        <img
+                            src="./img/fullbody-gym.jpg"
+                            alt="全身トレーニング"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+                    <div class="planner-beginner-content">
+
+                        <span>
+                            BEGINNER / LEVEL 2
+                        </span>
+
+                        <h3>
+                            💪 全身筋力アップ
+                        </h3>
+
+                        <p>
+                            週2〜3回・約45〜60分
+                        </p>
+
+                        <ul>
+                            <li>レッグプレス：10回 × 2セット</li>
+                            <li>ショルダープレス：10回 × 2セット</li>
+                            <li>ラットプルダウン：10回 × 2セット</li>
+                        </ul>
+
+                    </div>
+
+                </article>
+
+
+                <!-- 自宅トレーニング -->
+                <article class="planner-beginner-card">
+
+                    <div class="planner-beginner-image">
+
+                        <img
+                            src="./img/home-workout.jpg"
+                            alt="自宅でのトレーニング"
+                            onerror="this.style.display='none'"
+                        >
+
+                    </div>
+
+                    <div class="planner-beginner-content">
+
+                        <span>
+                            BEGINNER / HOME
+                        </span>
+
+                        <h3>
+                            🏠 自宅トレーニング
+                        </h3>
+
+                        <p>
+                            週2〜3回・約20〜30分
+                        </p>
+
+                        <ul>
+                            <li>スクワット：12回 × 2セット</li>
+                            <li>腕立て伏せ：5〜10回 × 2セット</li>
+                            <li>プランク：20秒 × 2セット</li>
+                        </ul>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+</html>soro

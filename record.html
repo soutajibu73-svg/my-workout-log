@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0e0c">
+  <title>トレーニングを記録 | MY WORKOUT LOG</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="record-page">
+  <header class="home-header record-header">
+    <a class="home-brand" href="index.html" aria-label="MY WORKOUT LOG ホームへ">
+      <span class="brand-mark" aria-hidden="true">M<span>W</span></span>
+      <span class="brand-name">MY <b>WORKOUT</b> LOG</span>
+    </a>
+    <nav class="home-desktop-nav" aria-label="メインメニュー">
+      <a href="index.html">ホーム</a>
+      <a href="record.html" aria-current="page">記録する</a>
+      <a href="history.html">履歴</a>
+      <a href="progress.html">成長</a>
+      <a href="weight.html">体重管理</a>
+      <a href="beginner.html">初心者メニュー</a>
+    </nav>
+    <a class="home-header-cta" href="history.html">記録を見る ↗</a>
+  </header>
+
+  <main class="record-main">
+<!-- ==========================================
+     記録ページ ヒーロー
+========================================== -->
+
+<section class="record-intro" aria-labelledby="recordPageTitle">
+
+  <div class="record-hero-image">
+    <img
+      src="./img/record-hero.jpg"
+      alt="ジムでスマートフォンにトレーニングを記録する女性"
+    >
+  </div>
+
+  <div class="record-hero-content">
+
+    <p class="record-kicker">
+      <span class="record-kicker-line"></span>
+      TRAINING JOURNAL / 01
+    </p>
+
+    <h1 id="recordPageTitle">
+      今日の努力を、<br>
+      <em>記録する。</em>
+    </h1>
+
+    <p class="record-lead">
+      一回の積み重ねが、未来の自分をつくる。<br>
+      今日のトレーニングを、次の成長につなげよう。
+    </p>
+
+    <div class="record-intro-meta">
+      <span>TRACK YOUR PROGRESS</span>
+      <span>BUILD YOUR STRENGTH</span>
+    </div>
+
+  </div>
+
+</section>
+
+    <div class="record-layout">
+      <section class="record-panel" aria-labelledby="recordFormTitle">
+        <div class="record-panel-head">
+          <div><p class="record-kicker">NEW SESSION</p><h2 id="recordFormTitle">トレーニングを記録<span class="record-accent">.</span></h2></div>
+          <span class="record-panel-badge">01 / LOG</span>
+        </div>
+        <form id="workoutForm">
+          <div class="record-form-section">
+            <p class="record-section-label">01 <span>WORKOUT DETAILS</span></p>
+            <div class="record-field-grid">
+              <div class="record-field">
+                <label for="bodyPart">鍛える部位 <span class="record-required">必須</span></label>
+                <select id="bodyPart" required>
+                  <option value="">部位を選択してください</option>
+                  <option value="胸">胸</option><option value="背中">背中</option><option value="脚">脚</option>
+                  <option value="肩">肩</option><option value="腕">腕</option><option value="腹筋">腹筋</option><option value="お尻">お尻</option>
+                </select>
+              </div>
+              <div class="record-field">
+                <label for="exercise">トレーニング種目 <span class="record-required">必須</span></label>
+                <select id="exercise" required disabled><option value="">先に部位を選択してください</option></select>
+              </div>
+            </div>
+            <div class="custom-exercise record-custom">
+              <div class="record-custom-copy"><label for="customExercise">自分だけの種目を追加</label><p>一覧にない種目も登録できます。</p></div>
+              <div class="record-custom-controls">
+                <input type="text" id="customExercise" placeholder="例：オリジナル腕立て伏せ" maxlength="40">
+                <button type="button" id="addExercise">＋ 種目を追加</button>
+              </div>
+              <p id="exerciseMessage" role="status" aria-live="polite"></p>
+              <div class="record-custom-list-wrap" aria-labelledby="customListTitle">
+                <h3 id="customListTitle">登録したオリジナル種目</h3>
+                <p class="record-custom-list-help">選択した部位に登録した種目を管理できます。</p>
+                <ul id="customExerciseList" class="record-custom-list"></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="record-form-section">
+            <p class="record-section-label">02 <span>PERFORMANCE</span></p>
+            <div class="record-numbers">
+              <div class="record-field"><label for="weight">重量 <span class="record-unit">KG</span></label><input type="number" id="weight" min="0" step="0.5" placeholder="60" inputmode="decimal" required></div>
+              <div class="record-field"><label for="reps">回数 <span class="record-unit">REPS</span></label><input type="number" id="reps" min="1" step="1" placeholder="10" inputmode="numeric" required></div>
+              <div class="record-field"><label for="sets">セット数 <span class="record-unit">SETS</span></label><input type="number" id="sets" min="1" step="1" value="1" inputmode="numeric" required></div>
+            </div>
+            <div class="record-field record-date-field"><label for="date">トレーニング日 <span class="record-required">必須</span></label><input type="date" id="date" required></div>
+            <div id="workoutComparison" class="workout-comparison record-feedback" hidden>
+              <h3>前回との比較 <span>PERFORMANCE CHANGE</span></h3>
+              <p id="weightComparison"></p><p id="repsComparison"></p><p id="setsComparison"></p>
+            </div>
+          </div>
+
+          <div class="record-form-section record-form-section-last">
+            <p class="record-section-label">03 <span>NOTES</span></p>
+            <div class="record-field"><label for="memo">今日のメモ <span class="record-optional">任意</span></label><textarea id="memo" rows="4" placeholder="今日の感覚やフォームの気づきを残そう。"></textarea></div>
+          </div>
+          <button type="submit" class="record-submit">トレーニングを保存 <span aria-hidden="true">↗</span></button>
+          <p id="saveMessage" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="record-sidebar" aria-label="前回の記録とヒント">
+        <section class="record-side-card record-last-card">
+          <p class="record-kicker">LAST PERFORMANCE</p>
+          <h2>前回の自分を、<br>超えていこう。</h2>
+          <p class="record-side-description">部位と種目を選ぶと、前回の記録を確認できます。</p>
+          <div id="previousWorkout" class="previous-workout record-previous" aria-live="polite" hidden>
+            <h3>前回のトレーニング</h3>
+            <p id="previousDate"></p><p id="previousWeight"></p><p id="previousReps"></p><p id="previousSets"></p>
+          </div>
+          <button type="button" id="copyPrevious" class="sub-button record-copy" disabled>前回の記録をコピー ↗</button>
+        </section>
+        <section class="record-side-card record-tip-card">
+          <p class="record-kicker">KEEP GOING</p>
+          <div class="record-tip-mark" aria-hidden="true">↗</div>
+          <h2>小さな記録が、<br><span>大きな成長に。</span></h2>
+          <p>重量だけでなく、回数やセット数、フォームの気づきも残しておくと、次回のトレーニングに役立ちます。</p>
+          <a href="progress.html">成長をチェックする <span aria-hidden="true">→</span></a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <nav class="bottom-nav record-mobile-nav" aria-label="モバイルメニュー">
+    <a href="index.html">⌂ ホーム</a><a href="record.html" aria-current="page">＋ 記録</a>
+    <a href="history.html">▤ 履歴</a><a href="progress.html">↗ 成長</a>
+  </nav>
+  <script src="record.js"></script>
+</body>
+</html>

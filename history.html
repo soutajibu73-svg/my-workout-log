@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>トレーニング履歴 | MY WORKOUT LOG</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body class="history-page">
+
+    <!-- ヘッダー -->
+    <header class="history-header">
+
+        <a href="index.html" class="history-brand">
+            <span class="history-brand-icon">MW</span>
+            <span class="history-brand-text">MY WORKOUT LOG</span>
+        </a>
+
+        <nav class="history-desktop-nav" aria-label="メインメニュー">
+            <a href="index.html">ホーム</a>
+            <a href="record.html">記録する</a>
+            <a href="history.html" aria-current="page">履歴</a>
+            <a href="progress.html">成長</a>
+            <a href="weight.html">体重管理</a>
+            <a href="beginner.html">初心者メニュー</a>
+        </nav>
+
+        <a href="record.html" class="history-header-button">
+            ＋ 記録する
+        </a>
+
+    </header>
+
+
+    <main class="history-main">
+
+<!-- ページタイトル -->
+<section class="history-hero history-hero-compact">
+
+    <!-- 背景写真 -->
+    <div class="history-hero-image">
+        <img src="./img/history-hero.jpg" alt="ジムでトレーニング記録を確認する女性">
+    </div>
+
+    <!-- タイトル -->
+    <div class="history-hero-content">
+
+        <p class="history-eyebrow">
+            TRAINING HISTORY
+        </p>
+
+        <h1>
+            トレーニング<br>
+            <span>履歴</span>
+        </h1>
+
+        <p class="history-description">
+            日々の積み重ねを振り返り、<br>
+            次の成長につなげよう。
+        </p>
+
+    </div>
+
+</section>
+
+
+        <!-- 週間トレーニング -->
+        <section class="history-week-panel">
+
+            <div class="history-week-top">
+
+                <div>
+                    <p class="history-eyebrow">WEEKLY WORKOUTS</p>
+                    <h2>週間トレーニング</h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="currentWeekBtn"
+                    class="history-today-btn"
+                >
+                    今週に戻る
+                </button>
+
+            </div>
+
+
+            <!-- 週の切り替え -->
+            <div class="history-week-navigation">
+
+                <button
+                    type="button"
+                    id="prevWeekBtn"
+                    class="history-week-arrow"
+                >
+                    ← 前の週
+                </button>
+
+                <h3 id="weekRange">
+                    読み込み中...
+                </h3>
+
+                <button
+                    type="button"
+                    id="nextWeekBtn"
+                    class="history-week-arrow"
+                >
+                    次の週 →
+                </button>
+
+            </div>
+
+
+            <!-- 週間カレンダー -->
+            <div
+                id="weeklyCalendar"
+                class="history-week-calendar"
+                aria-label="週間トレーニング状況"
+            ></div>
+
+
+            <!-- 週間サマリー -->
+            <div class="history-week-summary">
+
+                <div class="history-summary-item">
+
+                    <span class="history-summary-label">
+                        トレーニング日数
+                    </span>
+
+                    <strong id="weeklyTrainingDays">0日</strong>
+
+                </div>
+
+                <div class="history-summary-item">
+
+                    <span class="history-summary-label">
+                        記録した種目
+                    </span>
+
+                    <strong id="weeklyWorkoutCount">0件</strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 絞り込み -->
+        <section class="history-filter-panel">
+
+            <div class="history-filter-grid">
+
+                <div class="history-filter-field">
+
+                    <label for="filterBodyPart">
+                        トレーニング部位
+                    </label>
+
+                    <select id="filterBodyPart">
+                        <option value="all">すべての部位</option>
+                        <option value="胸">胸</option>
+                        <option value="背中">背中</option>
+                        <option value="脚">脚</option>
+                        <option value="肩">肩</option>
+                        <option value="腕">腕</option>
+                        <option value="腹筋">腹筋</option>
+                        <option value="お尻">お尻</option>
+                    </select>
+
+                </div>
+
+
+                <div class="history-filter-field">
+
+                    <label for="sortOrder">
+                        表示順
+                    </label>
+
+                    <select id="sortOrder">
+                        <option value="newest">新しい順</option>
+                        <option value="oldest">古い順</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 記録一覧 -->
+        <section class="history-records-section">
+
+            <div class="history-section-heading">
+
+                <div>
+                    <p class="history-eyebrow">YOUR WORKOUTS</p>
+                    <h2 id="historySectionTitle">この週の記録</h2>
+                </div>
+
+                <p id="historyCount" class="history-count">
+                    0件の記録
+                </p>
+
+            </div>
+
+
+            <!-- 表示切り替え -->
+            <div class="history-view-switch">
+
+                <button
+                    type="button"
+                    id="weeklyHistoryBtn"
+                    class="history-view-btn is-active"
+                    aria-pressed="true"
+                >
+                    この週の記録
+                </button>
+
+                <button
+                    type="button"
+                    id="allHistoryBtn"
+                    class="history-view-btn"
+                    aria-pressed="false"
+                >
+                    すべての履歴
+                </button>
+
+            </div>
+
+
+            <!-- 記録一覧 -->
+            <div
+                id="historyList"
+                class="history-list"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- もっと見る -->
+            <div class="history-load-more-wrap">
+
+                <button
+                    type="button"
+                    id="loadMoreHistoryBtn"
+                    class="history-load-more-btn"
+                    hidden
+                >
+                    もっと見る
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- スマホ用ナビ -->
+    <nav
+        class="bottom-nav history-mobile-nav"
+        aria-label="モバイルメニュー"
+    >
+
+        <a href="index.html">🏠 ホーム</a>
+        <a href="record.html">➕ 記録</a>
+        <a href="history.html" aria-current="page">📋 履歴</a>
+        <a href="progress.html">📈 成長</a>
+
+    </nav>
+
+
+    <!-- 編集ダイアログ -->
+    <dialog
+        id="editDialog"
+        class="edit-dialog history-edit-dialog"
+        aria-labelledby="editDialogTitle"
+    >
+
+        <form id="editForm">
+
+            <p class="history-eyebrow">EDIT WORKOUT</p>
+
+            <h2 id="editDialogTitle">
+                トレーニングを編集
+            </h2>
+
+            <p
+                id="editExerciseName"
+                class="history-edit-exercise"
+            ></p>
+
+
+            <label for="editWeight">重量（kg）</label>
+
+            <input
+                type="number"
+                id="editWeight"
+                min="0"
+                step="0.5"
+                required
+            >
+
+
+            <label for="editReps">回数</label>
+
+            <input
+                type="number"
+                id="editReps"
+                min="1"
+                step="1"
+                required
+            >
+
+
+            <label for="editSets">セット数</label>
+
+            <input
+                type="number"
+                id="editSets"
+                min="1"
+                step="1"
+                required
+            >
+
+
+            <label for="editMemo">メモ（任意）</label>
+
+            <textarea
+                id="editMemo"
+                rows="3"
+            ></textarea>
+
+
+            <div class="edit-actions">
+
+                <button
+                    type="button"
+                    id="cancelEdit"
+                    class="cancel-btn"
+                >
+                    キャンセル
+                </button>
+
+                <button type="submit">
+                    保存する
+                </button>
+
+            </div>
+
+        </form>
+
+    </dialog>
+
+
+    <script src="./history.js"></script>
+
+</body>
+</html>

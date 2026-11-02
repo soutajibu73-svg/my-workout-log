@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>成長記録 | MY WORKOUT LOG</title>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="progress-page">
+
+    <!-- ヘッダー -->
+    <header class="progress-header">
+
+        <a href="./index.html" class="home-brand">
+            <span class="brand-mark">MW</span>
+            <span class="brand-name">
+                MY <b>WORKOUT</b> LOG
+            </span>
+        </a>
+
+        <nav class="home-desktop-nav" aria-label="メインメニュー">
+            <a href="./index.html">ホーム</a>
+            <a href="./record.html">記録する</a>
+            <a href="./history.html">履歴</a>
+            <a href="./progress.html" aria-current="page">成長</a>
+            <a href="./weight.html">体重管理</a>
+            <a href="./beginner.html">初心者メニュー</a>
+        </nav>
+
+        <a href="./record.html" class="home-header-cta">
+            ＋ 記録する
+        </a>
+
+    </header>
+
+
+    <main class="progress-main">
+
+        <!-- ページタイトル -->
+        <section class="progress-hero">
+
+            <div class="progress-hero-content">
+
+                <p class="progress-kicker">
+                    YOUR PROGRESS
+                </p>
+
+                <h1>
+                    努力を、数字で<br>
+                    <em>実感する。</em>
+                </h1>
+
+                <p class="progress-lead">
+                    日々のトレーニングを振り返り、<br>
+                    積み重ねてきた努力と成長を確認しよう。
+                </p>
+
+            </div>
+
+<!-- ヒーロー右側のダンベル写真 -->
+<div class="progress-hero-visual" aria-hidden="true">
+    <div class="progress-hero-photo"></div>
+    <span class="progress-hero-decoration">01 / GROWTH</span>
+</div>
+
+        </section>
+
+
+        <!-- 成長サマリー -->
+        <section class="progress-summary">
+
+            <div class="progress-section-heading">
+
+                <div>
+                    <p class="progress-kicker">OVERVIEW</p>
+                    <h2>トレーニング実績</h2>
+                </div>
+
+                <span class="progress-section-label">
+                    ALL TIME
+                </span>
+
+            </div>
+
+            <div class="progress-stats-grid">
+
+                <div class="progress-stat-card">
+
+                    <span class="progress-stat-label">
+                        TOTAL DAYS
+                    </span>
+
+                    <div class="progress-stat-value">
+                        <span id="totalDays">0</span>
+                        <small>日</small>
+                    </div>
+
+                    <p>累計トレーニング日数</p>
+
+                </div>
+
+                <div class="progress-stat-card">
+
+                    <span class="progress-stat-label">
+                        TOTAL RECORDS
+                    </span>
+
+                    <div class="progress-stat-value">
+                        <span id="totalRecords">0</span>
+                        <small>件</small>
+                    </div>
+
+                    <p>累計記録数</p>
+
+                </div>
+
+                <div class="progress-stat-card">
+
+                    <span class="progress-stat-label">
+                        TOTAL EXERCISES
+                    </span>
+
+                    <div class="progress-stat-value">
+                        <span id="totalExercises">0</span>
+                        <small>種目</small>
+                    </div>
+
+                    <p>記録した種目数</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 自己ベスト -->
+        <section class="progress-best-section">
+
+            <div class="progress-section-heading">
+
+                <div>
+                    <p class="progress-kicker">PERSONAL BEST</p>
+                    <h2>自己ベスト</h2>
+                </div>
+
+            </div>
+
+            <div class="progress-best-card">
+
+                <div class="progress-best-left">
+
+                    <label for="bestExercise">
+                        種目を選択
+                    </label>
+
+                    <select id="bestExercise">
+                        <option value="">
+                            種目を選択してください
+                        </option>
+                    </select>
+
+                    <p class="progress-best-description">
+                        選択した種目の最高重量を表示します。
+                    </p>
+
+                </div>
+
+                <div class="progress-best-right">
+
+                    <span class="progress-best-caption">
+                        MAX WEIGHT
+                    </span>
+
+                    <div class="progress-best-value"
+                         id="personalBest"
+                         aria-live="polite">
+                        -- kg
+                    </div>
+
+                    <div class="progress-best-comparison">
+
+                        <span>前回の最高重量</span>
+
+                        <strong id="previousBest">
+                            -- kg
+                        </strong>
+
+                    </div>
+
+                    <div class="progress-best-change"
+                         id="bestChange">
+                        記録を分析中
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- 成長グラフ -->
+        <section class="progress-chart-section">
+
+            <div class="progress-section-heading">
+
+                <div>
+                    <p class="progress-kicker">
+                        GROWTH ANALYSIS
+                    </p>
+
+                    <h2>重量の成長グラフ</h2>
+                </div>
+
+            </div>
+
+            <div class="progress-chart-card">
+
+                <div class="progress-chart-controls">
+
+                    <div class="progress-chart-select">
+
+                        <label for="chartExercise">
+                            表示する種目
+                        </label>
+
+                        <select id="chartExercise">
+                            <option value="">
+                                種目を選択してください
+                            </option>
+                        </select>
+
+                    </div>
+
+
+<div class="progress-period-controls" role="group" aria-label="グラフの表示期間">
+
+    <button type="button"
+            class="progress-period-btn"
+            data-period="1w"
+            aria-pressed="false">
+        1週間
+    </button>
+
+    <button type="button"
+            class="progress-period-btn"
+            data-period="1m"
+            aria-pressed="false">
+        1か月
+    </button>
+
+    <button type="button"
+            class="progress-period-btn"
+            data-period="3m"
+            aria-pressed="false">
+        3か月
+    </button>
+
+    <button type="button"
+            class="progress-period-btn is-active"
+            data-period="all"
+            aria-pressed="true">
+        全期間
+    </button>
+
+</div>
+
+
+                </div>
+
+                <div class="progress-chart-container">
+
+                    <canvas
+                        id="workoutChart"
+                        aria-label="トレーニング重量の推移グラフ"
+                        role="img">
+                    </canvas>
+
+                </div>
+
+                <p id="chartMessage" class="progress-chart-message">
+                    種目を選択すると、成長グラフが表示されます。
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- スマートフォン用ナビゲーション -->
+    <nav class="bottom-nav progress-mobile-nav"
+         aria-label="モバイルメニュー">
+
+        <a href="./index.html">ホーム</a>
+        <a href="./record.html">記録</a>
+        <a href="./history.html">履歴</a>
+        <a href="./progress.html" aria-current="page">成長</a>
+        <a href="./weight.html">体重</a>
+
+    </nav>
+
+
+    <script src="./progress.js"></script>
+
+</body>
+</html>
